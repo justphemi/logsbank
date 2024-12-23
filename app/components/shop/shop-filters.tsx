@@ -15,10 +15,11 @@ import {
 const platforms = [
   "Facebook",
   "Instagram",
-  "Twitter",
+  "X",
   "LinkedIn",
   "Google Voice",
   "Talkatone",
+  "Textplus",
   "TikTok",
   "WhatsApp",
 ];

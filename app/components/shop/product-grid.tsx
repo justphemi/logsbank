@@ -367,6 +367,39 @@ const products: Product[] = [
     description: "TikTok account eligible for the Creator Fund with monetization opportunities",
     image: "/tiktok.png",
   },
+  {
+    id: "tt0004",
+    title: "Testplus Premium+",
+    platform: "textplus",
+    price: 50000,
+    followers: 10000,
+    age: 3,
+    features: ["monetization", "creator perks"],
+    description: "Textplus account eligible for the Creator Fund with monetization opportunities",
+    image: "/textplus.png",
+  },
+  {
+    id: "tt01004",
+    title: "Testplus Premium",
+    platform: "textplus",
+    price: 53000,
+    followers: 12000,
+    age: 2,
+    features: ["monetization", "creator perks"],
+    description: "Textplus account eligible for the Creator Fund with monetization opportunities",
+    image: "/textplus.png",
+  },
+  {
+    id: "tt00014",
+    title: "Testplus Pro+",
+    platform: "textplus",
+    price: 34000,
+    followers: 10600,
+    age: 8,
+    features: ["monetization", "creator perks"],
+    description: "Textplus account eligible for the Creator Fund with monetization opportunities",
+    image: "/textplus.png",
+  },
 ]
 
 interface ProductGridProps {
@@ -431,8 +464,8 @@ export function ProductGrid({ initialPlatform }: ProductGridProps) {
         </div>
       ) : (
         <div className="text-center py-12">
-          <h2 className="text-2xl font-semibold mb-4">Oops! No products selected.</h2>
-          <p className="text-muted-foreground">Select a product to shop.</p>
+          <h2 className="text-2xl font-semibold mb-4">Fetching logs..</h2>
+          <p className="text-muted-foreground">Please hold on a few secs or refresh!</p>
         </div>
       )}
 
