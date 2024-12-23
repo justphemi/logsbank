@@ -1,9 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { useSearchParams } from "next/navigation"
+import { useState, useEffect, Suspense } from "react"
+import dynamic from "next/dynamic"
 import { ShopFilters } from "../components/shop/shop-filters"
 import { ProductGrid } from "../components/shop/product-grid"
+import { useSearchParams } from "next/navigation"
+
+// Dynamically import the ShopPage component with ssr: false to disable server-side rendering
+const ClientShopPage = dynamic(() => Promise.resolve(ShopPage), { ssr: false })
 
 export default function ShopPage() {
   const searchParams = useSearchParams()
@@ -22,12 +26,13 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8">
-        <ShopFilters initialPlatform={platform} onFilterChange={handleFilterChange} />
-        <ProductGrid initialPlatform={platform} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8">
+          <ShopFilters initialPlatform={platform} onFilterChange={handleFilterChange} />
+          <ProductGrid initialPlatform={platform} />
+        </div>
       </div>
-    </div>
+    </Suspense>
   )
 }
-
