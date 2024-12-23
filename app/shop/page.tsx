@@ -16,7 +16,7 @@ export default function ShopPage() {
     }
   }, [searchParams])
 
-  const handleFilterChange = (newFilters) => {
+  const handleFilterChange = (newFilters:any) => {
     // You can add more logic here if needed
     setPlatform(newFilters.platform)
   }
