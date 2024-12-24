@@ -17,7 +17,7 @@ export function Header() {
       <div className="container flex h-16 w-[100%] px-6 justify-between items-center">
         
         <Link href="/" className="flex items-center ">
-          <span className="text-xl font-bold font-sans text-blue-700">LOGSBANK.</span>
+          <span className="text-xl font-bold text-blue-500">LOGSBANK.</span>
         </Link>
         <div className="flex items-center gap-4 justify-end">
           <Button variant="ghost" className="relative h-8 w-8" onClick={() => setIsCartOpen(true)}>

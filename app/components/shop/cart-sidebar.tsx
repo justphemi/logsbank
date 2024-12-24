@@ -23,44 +23,47 @@ export function CartSidebar({ open, onClose }: { open: boolean; onClose: () => v
         <SheetHeader>
           <SheetTitle>Your Cart</SheetTitle>
         </SheetHeader>
-        <div className="mt-8 space-y-4 overflow-y-auto h-[60vh] w-full"> {/* Adjusted height */}
-          {items.map((item) => (
-            <div key={item.id} className="flex items-center justify-between border-b pb-4">
-              <div>
-                <h3 className="font-semibold">{item.title}</h3>
-                <p className="text-sm text-gray-500">{item.platform}</p>
-                <div className="flex items-center mt-2">
+        {items.length > 0 ? 
+          <div className="mt-8 space-y-4 overflow-y-auto h-[50vh] w-full"> {/* Adjusted height */}
+            {items.map((item) => (
+              <div key={item.id} className="flex items-center justify-between border-b pb-4">
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-sm text-gray-500">{item.platform}</p>
+                  <div className="flex items-center mt-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                    <span className="mx-2">{item.quantity}</span>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="font-semibold">₦{(item.price * item.quantity).toLocaleString()}</p>
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="icon"
-                    onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                    onClick={() => removeFromCart(item.id)}
+                    className="mt-2"
                   >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <span className="mx-2">{item.quantity}</span>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  >
-                    <Plus className="h-4 w-4" />
+                    <X className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
-              <div className="text-right">
-                <p className="font-semibold">₦{(item.price * item.quantity).toLocaleString()}</p>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => removeFromCart(item.id)}
-                  className="mt-2"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div> : 
+          <div className="text-md text-neutral-500 mt-8 flex items-center justify-center text-center space-y-4 overflow-y-auto h-[50vh] w-full">Your cart is empty! <br /> Add a product to cart to continue... </div>    
+        }
         <div className="mt-0">
           <div className="space-y-2">
             <Label htmlFor="coupon">Coupon Code (Optional)</Label>
